@@ -1,4 +1,4 @@
-
+# Inheritance 
 
 app = Flask(__name__)
 
