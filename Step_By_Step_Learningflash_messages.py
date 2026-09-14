@@ -1,4 +1,4 @@
-# Inheritance 
+# Templatest Inheritance 
 
 app = Flask(__name__)
 
