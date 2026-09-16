@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Page</title>
+</head>
+<body>
+    {% extends "base.html" %}
+
+    {% block content %}
+    <div class="page">
+        <h2>Welcome To About Page</h2>
+        <p>Yogesh Mandawat</p>
+    </div>
+
+    
+    <style>
+        .page {
+            color: aqua;
+            background-color: antiquewhite;
+            text-align: center;
+            
+            min-height: 20vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .page h2 {
+            color: black;
+            text-align: center;
+        }
+        
+        .page p {
+            color: black;
+            /* text-align: center; */
+            justify-content: center;
+            align-items: center;
+        }
+        </style>
+        {% endblock %}
+
+</body>
+</html>
+
+
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hey this is a Yogesh...</h1>
+</body>
+</html> -->

@@ -1,0 +1,44 @@
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+nav {
+    padding: 15px;
+    background-color: black;
+}
+
+nav a {
+    color: white;
+    margin-right: 20px;
+    text-decoration: none;
+}
+
+.page {
+    padding: 30px;
+} */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar */
+nav {
+    background-color: #222;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+}
+
+/* Navbar Links */
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-right: 25px;
+    font-size: 18px;
+}
+
+/* Hover Effect */
+nav a:hover {
+    color: #00bfff;
+}
