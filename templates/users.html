@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+    <h1>All User</h1>
+
+    {% for user in users %} 
+        <p>ID: {{ user[0] }}</p>
+        <p>Name: {{ user[1] }}</p>
+        <p>Email: {{ user[2] }}</p>
+        <p>Age: {{ user[3] }}</p>
+
+        <hr>
+
+        <a href="/edit-users/{{ user[0] }}">Edit</a>
+    {% endfor %}
+
+</body>
+</html>

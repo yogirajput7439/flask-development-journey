@@ -270,31 +270,117 @@
 # def contact():
 #     return render_template("contact.html")
 
-from flask import Flask
+# from flask import Flask
+# import sqlite3
+
+# app = Flask(__name__)
+
+
+# def create_table():
+#     conn = sqlite3.connect("database.db")
+#     cursor = conn.cursor()
+
+#     cursor.execute("""
+#         CREATE TABLE IF NOT EXISTS users (
+#             id INTEGER PRIMARY KEY AUTOINCREMENT,
+#             name TEXT,
+#             email TEXT,
+#             age INTEGER
+#         )
+#     """)
+
+#     conn.commit()
+#     conn.close()
+
+#     print("Users table created successfully!")
+
+
+# if __name__ == "__main__":
+#     create_table()
+#     app.run(debug=True)
+##______________________________________________
+from flask import Flask, request, render_template
 import sqlite3
 
 app = Flask(__name__)
 
 
-def create_table():
+@app.route("/add-user", methods=["GET", "POST"])
+def add_user():
+
+    if request.method == "POST":
+
+        name = request.form.get("name")
+        email = request.form.get("email")
+        age = request.form.get("age")
+
+        conn = sqlite3.connect("database.db")
+        cursor = conn.cursor()
+
+        cursor.execute(
+            "INSERT INTO users (name, email, age) VALUES (?, ?, ?)",
+            (name, email, age)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return "User added successfully..."
+
+    return render_template("user.html")
+
+
+# --------------------------------
+
+
+@app.route("/users")
+def users():
+
     conn = sqlite3.connect("database.db")
     cursor = conn.cursor()
 
-    cursor.execute("""
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT,
-            email TEXT,
-            age INTEGER
-        )
-    """)
+    cursor.execute("SELECT * FROM users")
 
-    conn.commit()
+    users = cursor.fetchall()
+
     conn.close()
 
-    print("Users table created successfully!")
+    return render_template("users.html", users=users)
+
+@app.route("/edit-users/<int:id>", methods = ["GET", "POST"])
+
+def edit_user(id):
+
+    conn = sqlite3.connect("database.db")
+    cursor = conn.cursor()
+
+    if request.method == "POST":
+
+        name = request.form.get("name")
+        email  = request.form.get("email")
+        age = request.form.get("age")
 
 
-if __name__ == "__main__":
-    create_table()
-    app.run(debug=True)
+        cursor.execute("""
+            UPDATE users
+            SET name = ?, email = ?, age = ? 
+            WHERE id = ?
+            """,
+            (name, email, age, id)
+        )
+
+        conn.commit()
+        conn.close()
+
+        return "user update successfully..."
+
+    cursor.execute(
+        "SELECT * FROM users WHERE id = ?",
+        (id,)
+    )
+
+    user = cursor.fetchone()
+
+    conn.close()
+
+    return render_template("edit_user.html", user = user)
