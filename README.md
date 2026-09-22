@@ -19,6 +19,13 @@ This repository contains my notes, practice code, exercises, and projects while 
 * Learn production-ready Flask development
 
 ---
+### Useful Commands
+
+- pwd - working directory print
+- cd 'flask_learning' - flask learning ko current directory kar dega
+- source venv/bin/activate - to acctivate the server
+
+---
 
 ## 🛠️ Technologies & Tools
 
